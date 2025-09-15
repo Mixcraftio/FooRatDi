@@ -1,11 +1,11 @@
 @font-face {
     font-family: "Roboto";
-    src: url("/static/fonts/Roboto.ttf");
+    src: url("FooRatDi/static/fonts/Roboto.ttf");
 }
 @font-face {
     font-family: "Roboto";
     font-style: italic;
-    src: url("/static/fonts/Roboto-Italic.ttf");
+    src: url("FooRatDi/static/fonts/Roboto-Italic.ttf");
 }
 @keyframes fadeIn{
     0%{opacity: 0;}
