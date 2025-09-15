@@ -91,6 +91,12 @@ function previousDay() {
 async function updateDay(dayIndex) {
     if (!menus || menus.length === 0) return;
     if (dayIndex < 0 || dayIndex > 4) return;
+    if (dayIndex == 0) document.querySelector("md-filled-icon-button.previous").setAttribute("disabled", "");
+    if (dayIndex == 4) document.querySelector("md-filled-icon-button.next").setAttribute("disabled", "");
+    if (dayIndexSel == 0 || dayIndexSel == 4) {
+        const buttons = document.querySelectorAll("md-filled-icon-button");
+        buttons.forEach(but => but.removeAttribute("disabled"))
+    };
 
     const wrapper = document.querySelector('div#wrapper');
     Array.from(wrapper.children).forEach(section => {
@@ -124,6 +130,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     try{
         const json = await fetchPublicDownloadList();
         menus = json.data.getPos.menus;
+
+        menus.sort((a, b) => new Date(a.day) - new Date(b.day));
 
         updateDay(0);
     } catch (err) {
