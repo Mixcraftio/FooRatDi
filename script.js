@@ -1,39 +1,42 @@
+var menus;
+var dayIndexSel;
+
 async function fetchPublicDownloadList() {
     let query = `
 fragment pointsOfSaleFragment2 on Pos {
-  name
-  schedules {
-    days
-    hours
-  }
+    name
+    schedules {
+        days
+        hours
+    }
 }
 
 query getPos($id: ID!, $days: Int!) {
-  getPos(id: $id) {
-    ...pointsOfSaleFragment2
-    menus(days: $days) {
-      day
-      elements {
-        label
-        price {
-          amount
-          currency
+    getPos(id: $id) {
+        ...pointsOfSaleFragment2
+        menus(days: $days) {
+            day
+            elements {
+                label
+                price {
+                    amount
+                    currency
+                }
+                dish {
+                    dishGroup {
+                        label
+                    }
+                }
+                allergens
+                certifications
+                products(main: false) {
+                    main
+                    label
+                    certifications
+                }
+            }
         }
-        dish {
-          dishGroup {
-            label
-          }
-        }
-        allergens
-        certifications
-        products(main: false) {
-          main
-          label
-          certifications
-        }
-      }
     }
-  }
 }`;
     const res = await   fetch("https://api.foodi.fr/graphql", {
                             method: "POST",
@@ -43,7 +46,7 @@ query getPos($id: ID!, $days: Int!) {
                             },
                             body: JSON.stringify({
                                 operationName: "getPos",
-                                variables: { id: "695", days: 7 },
+                                variables: { id: "695", days: 5 },
                                 query: query
                             })
                         })
@@ -77,17 +80,28 @@ function createListItem(headline, text, trailing) {
     return item;
 }
 
-document.addEventListener("DOMContentLoaded", async () => {
-    try{
-        const json = await fetchPublicDownloadList();
-        const menus = json.data.getPos.menus;
+function nextDay() {
+    updateDay(dayIndexSel + 1);
+}
 
-        if (!menus || menus.length === 0) return;
+function previousDay() {
+    updateDay(dayIndexSel - 1);
+}
 
-        const todayMenu = menus[0]; // first day for now
-        document.querySelector(".currentDay").textContent = todayMenu.day;
+async function updateDay(dayIndex) {
+    if (!menus || menus.length === 0) return;
+    if (dayIndex < 0 || dayIndex > 4) return;
 
-        todayMenu.elements.forEach(el => {
+    const wrapper = document.querySelector('div#wrapper');
+    Array.from(wrapper.children).forEach(section => {
+        const list = section.querySelector('md-list');
+        list.innerHTML = "";
+    });
+
+    const todayMenu = menus[dayIndex]; // first day for now
+    document.querySelector(".currentDay").textContent = todayMenu.day;
+
+    todayMenu.elements.forEach(el => {
         const group = el.dish?.dishGroup?.label?.trim();
         if (!group) return;
 
@@ -102,6 +116,16 @@ document.addEventListener("DOMContentLoaded", async () => {
         list.appendChild(dishItem);
         list.appendChild(separator);
     });
+
+    dayIndexSel = dayIndex;
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+    try{
+        const json = await fetchPublicDownloadList();
+        menus = json.data.getPos.menus;
+
+        updateDay(0);
     } catch (err) {
         console.error("Error loading menu:", err);
     }

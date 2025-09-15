@@ -20,11 +20,11 @@
 
 <body>
     <div id="daySelect">
-        <md-filled-icon-button class="previous">
+        <md-filled-icon-button class="previous" onclick="previousDay()">
             <span class="material-symbols-outlined">arrow_back</span>
         </md-filled-icon-button>
         <h1 class="currentDay">00/00/2025</h1>
-        <md-filled-icon-button class="next">
+        <md-filled-icon-button class="next" onclick="nextDay()">
             <span class="material-symbols-outlined">arrow_forward</span>
         </md-filled-icon-button>
     </div>
@@ -32,14 +32,17 @@
     <div id="wrapper">
         <section id="starter" dishGroup="ENTREES">
             <h1>Entrées</h1>
+            <md-divider></md-divider>
             <md-list></md-list>
         </section>
         <section id="main course" dishGroup="PLATS CHAUDS">
             <h1>Plat</h1>
+            <md-divider></md-divider>
             <md-list></md-list>
         </section>
         <section id="dessert" dishGroup="DESSERTS">
             <h1>Dessert</h1>
+            <md-divider></md-divider>
             <md-list></md-list>
         </section>
     </div>
