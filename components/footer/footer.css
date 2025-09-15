@@ -1,0 +1,37 @@
+@media screen and (orientation: portrait){html{
+#footer footer{
+    grid-template-columns: auto;
+}
+}}
+
+#footer footer{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: var(--md-sys-color-surface-variant);
+    padding: 2%;
+    margin-top: 5%;
+    margin-bottom: 0;
+    color: var(--md-sys-color-on-surface-variant);
+    section{
+        text-align: center;
+        h2{
+            padding: 1em;
+            padding-bottom: 0;
+        }
+        p{
+            padding: 1em;
+            text-align: left;
+        }
+        a{
+            text-decoration: underline;
+            font-size: 1.2em;
+        }
+        ul{
+            padding: 2em;
+            list-style-type: none;
+            li{
+                padding: 0.2em;
+            }
+        }
+    }
+}

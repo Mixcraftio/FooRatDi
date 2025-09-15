@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Meta -->
+    <title>FooRatDi</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <!-- Scripts -->
+    <script src="/static/global.js"></script>
+    <script src="script.js"></script>
+    <!-- Style -->
+    <link rel="stylesheet" type="text/css" href="/static/global.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/static/theme/theme.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <!-- Other -->
+</head>
+
+<body>
+    <div id="daySelect">
+        <md-filled-icon-button class="previous">
+            <span class="material-symbols-outlined">arrow_back</span>
+        </md-filled-icon-button>
+        <h1 class="currentDay">00/00/2025</h1>
+        <md-filled-icon-button class="next">
+            <span class="material-symbols-outlined">arrow_forward</span>
+        </md-filled-icon-button>
+    </div>
+
+    <div id="wrapper">
+        <section id="starter" dishGroup="ENTREES">
+            <h1>Entrées</h1>
+            <md-list></md-list>
+        </section>
+        <section id="main course" dishGroup="PLATS CHAUDS">
+            <h1>Plat</h1>
+            <md-list></md-list>
+        </section>
+        <section id="dessert" dishGroup="DESSERTS">
+            <h1>Dessert</h1>
+            <md-list></md-list>
+        </section>
+    </div>
+</body>
+</html>

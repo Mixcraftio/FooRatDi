@@ -1,0 +1,31 @@
+@font-face {
+    font-family: "Roboto";
+    src: url("/static/fonts/Roboto.ttf");
+}
+@font-face {
+    font-family: "Roboto";
+    font-style: italic;
+    src: url("/static/fonts/Roboto-Italic.ttf");
+}
+@keyframes fadeIn{
+    0%{opacity: 0;}
+    100%{opacity: 1;}
+}
+html{
+    background-color: var(--md-sys-color-surface);
+    scrollbar-color: var(--md-sys-color-primary) var(--md-sys-color-surface);
+    /* scroll-behavior: smooth; */
+}
+body {
+    animation: fadeIn 0.1s;
+    color: var(--md-sys-color-on-surface);
+}
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto";
+}
+a{
+    text-decoration: none;
+    color: unset;
+}
